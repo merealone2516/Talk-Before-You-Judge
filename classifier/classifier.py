@@ -6,9 +6,6 @@ from enum import Enum, auto, unique
 from hashlib import md5
 from typing import Optional
 
-# Any column matching this regex will be excluded during CSV import
-EXCLUDE_COLUMNS_REGEX = "(Prompt1)|(Label)|(Unnamed: 1)|(.*_(i|I)nitial)"
-
 stream_handler = logging.StreamHandler()
 file_handler = logging.FileHandler("app.log")
 stream_handler.setLevel(logging.WARNING)
