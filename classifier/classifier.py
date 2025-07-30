@@ -6,9 +6,8 @@ from enum import Enum, auto, unique
 from hashlib import md5
 from typing import Optional
 
-# the number of different approaches the classifier below tries;
-# constant here used for aggregate statistics later on
-NUM_CASES = 3
+# Any column matching this regex will be excluded during CSV import
+EXCLUDE_COLUMNS_REGEX = "(Prompt1)|(Label)|(Unnamed: 1)|(.*_(i|I)nitial)"
 
 stream_handler = logging.StreamHandler()
 file_handler = logging.FileHandler("app.log")
