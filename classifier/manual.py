@@ -12,11 +12,9 @@ from classifier.classifier import (
     write_classes_to_debug_csv,
     write_classes_to_final_csv,
 )
-from classifier.evaluation import (
-    CLEANED_FILEPATHS,
-    EXCLUDE_COLUMNS_REGEX,
-    RAW_FILEPATHS,
-)
+
+# Any column matching this regex will be excluded during CSV import
+EXCLUDE_COLUMNS_REGEX = "(Prompt1)|(Label)|(Unnamed: 1)|(.*_(i|I)nitial)"
 
 PICKLE_FILE_NAME = "manual_classification_progress.pickle"
 
@@ -286,10 +284,7 @@ def main():
                 sys.argv[1:], EXCLUDE_COLUMNS_REGEX
             )
         else:
-            # DO CLASSIFICATION ON TEST FILES WITH KNOWN CLEAN FILES
-            classifications = generate_classifications_from_csvs_with_clean_files(
-                RAW_FILEPATHS, CLEANED_FILEPATHS, EXCLUDE_COLUMNS_REGEX
-            )
+            raise ValueError("Invalid arguments")
         logging.info(
             f"Loaded manual classification from CSVs; starting from beginnning"
         )
