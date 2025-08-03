@@ -1,5 +1,3 @@
-
-
 import os
 import pandas as pd
 import time
@@ -23,7 +21,7 @@ df["Gemma_Considered"] = ""
 
 API_KEY = userdata.get("GROQ_API_KEY")
 if not API_KEY:
-    raise ValueError("⚠️ GROQ_API_KEY not found in Colab `userdata`.")
+    raise ValueError(" GROQ_API_KEY not found in Colab `userdata`.")
 
 client = Groq(api_key=API_KEY)
 
@@ -43,10 +41,10 @@ for idx, row in df.iterrows():
     try:
         prompt = str(row.get("Prompt1", "") or "")
         if not prompt.strip():
-            print(f"⏩ Skipping row {idx+1}: Prompt empty.")
+            print(f" Skipping row {idx+1}: Prompt empty.")
             continue
 
-        print(f"\n🔄 Row {idx+1}/{len(df)} - Starting full conversation...")
+        print(f"\n Row {idx+1}/{len(df)} - Starting full conversation...")
 
 
         llama_msgs = [{"role": "user", "content": prompt}]
@@ -82,8 +80,8 @@ for idx, row in df.iterrows():
         df.at[idx, "LLaMA_Final"] = llama_final
         df.at[idx, "Gemma_Final"] = gemma_final
 
-        print(f"  ✅ LLaMA Final: {llama_final[:60]}...")
-        print(f"  ✅ Gemma Final: {gemma_final[:60]}...")
+        print(f"   LLaMA Final: {llama_final[:60]}...")
+        print(f"   Gemma Final: {gemma_final[:60]}...")
 
 
         llama_msgs += [
@@ -101,8 +99,8 @@ for idx, row in df.iterrows():
         df.at[idx, "LLaMA_Sure"] = llama_sure
         df.at[idx, "Gemma_Sure"] = gemma_sure
 
-        print(f"  🔎 LLaMA Sure: {llama_sure[:60]}...")
-        print(f"  🔎 Gemma Sure: {gemma_sure[:60]}...")
+        print(f"   LLaMA Sure: {llama_sure[:60]}...")
+        print(f"   Gemma Sure: {gemma_sure[:60]}...")
 
         final_prompt = "Have you considered all the possibilities? Please give your final choice as Response A or Response B with no extra explanation."
 
@@ -121,13 +119,13 @@ for idx, row in df.iterrows():
         df.at[idx, "LLaMA_Considered"] = llama_considered
         df.at[idx, "Gemma_Considered"] = gemma_considered
 
-        print(f"  🔎 LLaMA Considered: {llama_considered[:60]}...")
-        print(f"  🔎 Gemma Considered: {gemma_considered[:60]}...")
+        print(f"   LLaMA Considered: {llama_considered[:60]}...")
+        print(f"   Gemma Considered: {gemma_considered[:60]}...")
 
         time.sleep(0.5)
 
     except Exception as e:
-        print(f"❌ Error at row {idx+1}: {e}")
+        print(f" Error at row {idx+1}: {e}")
         df.at[idx, "LLaMA_Initial"] = "ERROR"
         df.at[idx, "Gemma_Initial"] = "ERROR"
         df.at[idx, "LLaMA_Final"] = "ERROR"
