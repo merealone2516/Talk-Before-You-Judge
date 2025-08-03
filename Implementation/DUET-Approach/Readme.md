@@ -1,1 +1,1 @@
-
+This repository contains the complete implementation of our DUET framework. To run the code, you will need API access to the LLMs used in our experiments. Specifically, DeepSeek and GPT require keys from their respective APIs; Claude can be accessed using an API key from Anthropic; and LLaMA and Gemma are served via the GROQ platform, which also provides its own API key. Please obtain keys from each provider and configure them in your environment to use the scripts.
